@@ -1,0 +1,145 @@
+.themed-grid-col {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    background-color: rgba(112.520718, 44.062154, 249.437846, .15);
+    border: 1px solid rgba(112.520718, 44.062154, 249.437846, .3);
+  }
+  
+  .themed-container {
+    padding: .75rem;
+    margin-bottom: 1.5rem;
+    background-color: rgba(112.520718, 44.062154, 249.437846, .15);
+    border: 1px solid rgba(112.520718, 44.062154, 249.437846, .3);
+  }
+
+  .headerSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem auto 7rem; 
+
+  }
+  
+
+  .headerSection > p {
+    display: inline-flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 75%; 
+    font-size: 26px;
+  }
+
+  .tools-row > p{
+    font-size: 26px;
+  }
+
+  .img{
+    height: 200px;
+    width:  200px; 
+  }
+  
+  .tools-row{
+    width: 50%; 
+    margin: 100px auto 100px auto;
+    text-align: left;
+  }
+
+  .pic1{
+    width: 25%; 
+    float: left; 
+    margin-right: 30px;
+  }
+
+  .pic2{
+    width: 25%; 
+    float: right; 
+  }
+
+
+  h1{
+    font-size: 5rem; 
+  }
+    
+  h2{
+    text-align: center;
+    font-size: 3rem; 
+  }
+
+  h3{
+    font-size: 2rem;
+    margin: 5rem auto 1rem; 
+  }
+
+
+
+
+
+
+
+
+
+  .calculator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem; /* add some padding to the container */
+    text-align: center;
+    height: 100vh;
+  }
+  
+  .userValuesWrapper {
+    border: solid;
+    border-width: 2px;
+    border-radius: 1rem;
+    padding: 1rem; /* add some padding to the wrapper */
+  }
+  
+  .userValues {
+    margin: auto;
+    text-align: center;
+  }
+
+  .coinPic{
+    height: 100px;
+    width: 100px; 
+    float: left;
+    margin: auto auto auto 50px;
+  }
+
+  .premiumButton{
+    margin-top: 1rem;
+  }
+
+
+  .buttons{
+    display: inline-flex;
+    margin: auto 50%; 
+  }
+  
+  p{
+    margin-bottom: 0px;
+  }
+
+  .results{
+    margin-left: 25%; 
+
+  }
+
+
+  .title, .spotPrice{
+    margin: auto 2%
+  }
+
+  #silverPrice{
+    width: 5rem;
+  }
+
+  #country-selector{
+    margin: auto 2%;
+  }
+
+  #homeTitle{
+    text-align: center;
+  }

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="color-modes.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silver Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+
+    <title>Document</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">Silverbug Tools</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample02">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="junkSilver.html">Melt Value</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="premiumCalculator.html">Premium Percent</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+
+
+    <div class="calculator">
+        <div class="userValuesWrapper">
+
+            <div class="userValues">
+                <h1>Silver Premium Calculator</h1>
+                <h4><label>Current Silver Price (per ounce):  $<input type="text" id="silverPrice" value="25.11"></label></h4>
+
+                <p>Total Coin Weight</p>
+                <input type="text" id="totalCoinWeight" placeholder="Grams, example: 6.25">
+
+
+                <p>Coin Purity</p>
+                <input type="text" id="totalCoinPurity" placeholder="1 - 99, example: 90">
+
+                <p>Total Coin Cost</p>
+                <input type="text" id="totalCoinCost" placeholder="US Dollars, example: 5.90">
+                <br>
+                <button onclick="calculatePremium()" class="premiumButton">Calculate</button>
+                <p>Premium Percent: <span id="premiumPercent"></span></p>
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+<script src="app.js"></script>
+</html>
