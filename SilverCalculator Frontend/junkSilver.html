@@ -149,7 +149,7 @@
                 <div class="coin-information">
                     <div class="coin-name">
                         <label>1971-1976 Eisenhower Half Dollar (40%)</label>
-                        <input type="text" id="eisenhowerNum" class="coin-amount" placeholder="# of Eisenhower Half Dollars">    
+                        <input type="text" id="eisenhowerNum" class="coin-amount" data-type="eisenhower"  oninput="updateCoinValues(this)" placeholder="# of Eisenhower Half Dollars">    
                     </div>
                     
                     <div class="results">
@@ -172,7 +172,7 @@
                 <div class="coin-information">
                     <div class="coin-name">
                         <label>1921-1928 Peace Dollar (90%)</label>
-                        <input type="text" id="peaceNum" class="coin-amount" placeholder="# of Peace Dollars">
+                        <input type="text" id="peaceNum" class="coin-amount" data-type="peace" oninput="updateCoinValues(this)" placeholder="# of Peace Dollars">
                     </div>
     
                     
@@ -194,7 +194,7 @@
                 <div class="coin-information">
                     <div class="coin-name">
                         <label>1878-1904 Morgan Dollar (90%)</label>
-                        <input type="text" id="morganNum" class="coin-amount" placeholder="# of Morgan Dollars">
+                        <input type="text" id="morganNum" class="coin-amount" data-type="morgan" oninput="updateCoinValues(this)" placeholder="# of Morgan Dollars">
                     </div>
     
                     
@@ -216,7 +216,7 @@
                 <div class="coin-information">
                     <div class="coin-name">
                         <label>1986-Present American Silver Eagle (99.9%)</label>
-                        <input type="text" id="aseNum" class="coin-amount" placeholder="# of Silver Eagles">
+                        <input type="text" id="aseNum" class="coin-amount" data-type="ase" oninput="updateCoinValues(this)" placeholder="# of Silver Eagles">
                     </div>
     
                     
@@ -238,7 +238,7 @@
             <div class="totalValues">
                 <p>Total Melt Value: <span id="totalMeltValue"></span></p>
                 <p>Total Face Value: <span id="totalFaceValue"></span></p>
-                <p>Total Troy ounces: <span id="totalSilverContent"></span></p>
+                <p>Total Troy ounces: <span id="totalTroyOz"></span></p>
             </div>
         
             <div class="buttons">
