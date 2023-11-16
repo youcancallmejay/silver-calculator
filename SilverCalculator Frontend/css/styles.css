@@ -1,145 +1,170 @@
+/*
+css reset
+*/
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 1420px) {
+  #all-coins-container .themed-grid-col {
+    width: 50%;
+    /* Make each column take up the full width on smaller screens */
+    margin-bottom: 15px;
+    /* Add some space between stacked columns */
+  }
+}
+
+@media (max-width: 1000px) {
+  #all-coins-container .themed-grid-col {
+    width: 100%;
+    /* Make each column take up the full width on smaller screens */
+    margin-bottom: 15px;
+    /* Add some space between stacked columns */
+  }
+}
+
+label{
+  margin-top: 1rem;
+}
+
+::placeholder{
+  font-size: 1rem;
+}
+
+#all-coins-container{
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.themed-container {
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+  background-color: white;
+  border: 1px solid rgba(112.520718, 44.062154, 249.437846, 0.3);
+}
+
 .themed-grid-col {
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-    background-color: rgba(112.520718, 44.062154, 249.437846, .15);
-    border: 1px solid rgba(112.520718, 44.062154, 249.437846, .3);
-  }
-  
-  .themed-container {
-    padding: .75rem;
-    margin-bottom: 1.5rem;
-    background-color: rgba(112.520718, 44.062154, 249.437846, .15);
-    border: 1px solid rgba(112.520718, 44.062154, 249.437846, .3);
-  }
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  background-color: #b80f0f;
+  border: 1px solid rgba(112.520718, 44.062154, 249.437846, 0.3);
+}
 
-  .headerSection{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 1rem auto 7rem; 
+.navbar {
+  background-color: #334972 !important;
+}
 
-  }
-  
+/* top section */
+#site-title {
+  font-size: 46px;
+  color: white;
+}
 
-  .headerSection > p {
-    display: inline-flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    width: 75%; 
-    font-size: 26px;
-  }
-
-  .tools-row > p{
-    font-size: 26px;
-  }
-
-  .img{
-    height: 200px;
-    width:  200px; 
-  }
-  
-  .tools-row{
-    width: 50%; 
-    margin: 100px auto 100px auto;
-    text-align: left;
-  }
-
-  .pic1{
-    width: 25%; 
-    float: left; 
-    margin-right: 30px;
-  }
-
-  .pic2{
-    width: 25%; 
-    float: right; 
-  }
+.top-section {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
 
 
-  h1{
-    font-size: 5rem; 
-  }
-    
-  h2{
-    text-align: center;
-    font-size: 3rem; 
-  }
+.col-md-4 {
+  align-items: center;
+  color: white;
+  display: flex;
+  font-size: 20px;
+  justify-content: center;
+  padding-left: 10px;
+}
 
-  h3{
-    font-size: 2rem;
-    margin: 5rem auto 1rem; 
-  }
+.coin-information {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: auto;
+}
 
+.coin-information p {
+  margin-bottom: 0px;
+}
 
+.coinPic {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  margin-left: 20px;
+}
 
+.coin-name {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
 
+.coin-amount {
+  height: 35px;
+  width: 150px;
+}
 
+.total-values-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 50px;
+}
 
+.total-values-container p {
+  font-size: 24px;
+  color: black;
+  margin-bottom: 0px;
+}
 
+.buttons {
+  align-items: center;
+  margin-top: 10px;
+}
 
-
-  .calculator {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem; /* add some padding to the container */
-    text-align: center;
-    height: 100vh;
-  }
-  
-  .userValuesWrapper {
-    border: solid;
-    border-width: 2px;
-    border-radius: 1rem;
-    padding: 1rem; /* add some padding to the wrapper */
-  }
-  
-  .userValues {
-    margin: auto;
-    text-align: center;
-  }
-
-  .coinPic{
-    height: 100px;
-    width: 100px; 
-    float: left;
-    margin: auto auto auto 50px;
-  }
-
-  .premiumButton{
-    margin-top: 1rem;
-  }
-
-
-  .buttons{
-    display: inline-flex;
-    margin: auto 50%; 
-  }
-  
-  p{
-    margin-bottom: 0px;
-  }
-
-  .results{
-    margin-left: 25%; 
-
-  }
+#silverPrice {
+  width: 5rem;
+}
 
 
-  .title, .spotPrice{
-    margin: auto 2%
-  }
 
-  #silverPrice{
-    width: 5rem;
-  }
+.coin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  width: 150px;
+  margin-right: auto;
+}
 
-  #country-selector{
-    margin: auto 2%;
-  }
+.coin-card {
+  /*position: absolute;*/
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+}
 
-  #homeTitle{
-    text-align: center;
-  }
+.coin-card:hover {
+  transform: rotateY(180deg);
+}
+
+.coin-face-front {
+  position: absolute; 
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.coin-face-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}
