@@ -1,118 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="color-modes.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silver Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+ 
+    
+    <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#" id="site-title">Silver Coin Calculator</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+    </nav>
 
 
-const coinMap = {
-  quarter: {country: 'america', faceValue: .25, weight: 6.25, silverContent: .90},
-  dime: {country: 'america', faceValue: .10, weight: 2.5, silverContent: .90},
-  nickel: {country: 'america', faceValue: .05, weight: 5, silverContent: .35},
-  franklin: {country: 'america', faceValue: .50, weight: 12.5, silverContent: .90 },
-  kennedy40: {country: 'america', faceValue: .50, weight: 11.5, silverContent: .40},
-  eisenhower: {country: 'america', faceValue: .50, weight: 24.59, silverContent: .40},
-  peace: {country: 'america', faceValue: 1, weight: 26.73, silverContent: .90},
-  morgan: {country: 'america', faceValue: 1, weight: 26.73, silverContent: .90},
-  ase: {country: 'america', faceValue: 1, weight: 31.103, silverContent: .999},
-};
+    
+    
+    <div class="top-section">        
+        <div class="spotPrice">
+            <h4><label>Current Silver Price (per ounce):  $<input type="text" id="silverPrice" oninput="updateCoinValuesOnChange()" value="22.49"></label></h4>
+            <p>Calculate the actual silver weight from your constitutional coins</strong>.</p>
+        </div>
+    </div>
 
-let coinTotals = {}
+    
 
-
-function updateCoinValues(number){
-  num = parseInt(number.value);
-  if(isNaN(num)){
-    num = 0;
-  }
-
-  coin_name = number.getAttribute("data-type");
-  total_weight = document.getElementById(`${coin_name}TotalWeight`);
-  silver_value = document.getElementById(`${coin_name}TotalSilver`);
-  troy_value = document.getElementById(`${coin_name}TroyOunces`)
-  melt_value = document.getElementById(`${coin_name}MeltValue`);
-  face_value = document.getElementById(`${coin_name}FaceValue`);
-  
-  coinDict = coinMap[coin_name];
-  spot_price = document.getElementById('silverPrice').value;
-
-  actual_weight = (coinDict.weight * num);
-  actual_silver = (coinDict.silverContent * actual_weight);  
-  troy_ounces = (actual_silver/ 31.1035); //31.1035 represents 1 troy ounce in grams
-  melt_dollar = (troy_ounces * spot_price); 
-  fiat_value = coinDict.faceValue * num;
-
-  // Update coinTotals for the specific coin type
-  coinTotals[coin_name] =
-  {
-    totalWeight: actual_weight.toFixed(2), 
-    troyWeight: troy_ounces.toFixed(4), 
-    meltValue: melt_dollar.toFixed(2), 
-    faceValue: fiat_value.toFixed(2)
-  }
-
-  
-  total_weight.innerHTML = actual_weight.toFixed(2);
-  silver_value.innerHTML = actual_silver.toFixed(2);
-  troy_value.innerHTML = troy_ounces.toFixed(4);
-  melt_value.innerHTML = melt_dollar.toFixed(2);
-  face_value.innerHTML = fiat_value.toFixed(2);
+        <div id="all-coins-container" class="row mb-3 text-center">    
 
 
-  getTotals();
-}
 
-function getTotals(){
-  let all_coins_melt_value = 0;
-  let all_coins_face_value = 0;
-  let all_coins_troy_ounces = 0;
-
-  for (coinName in coinTotals){
-    if(coinTotals.hasOwnProperty(coinName)){
-      let coin = coinTotals[coinName];
-      all_coins_melt_value += parseFloat(coin.meltValue);
-      all_coins_face_value += parseFloat(coin.faceValue);
-      all_coins_troy_ounces += parseFloat(coin.troyWeight);
-    }
-    final_melt_value = document.getElementById('totalMeltValue');
-    final_melt_value.innerHTML = "$" + all_coins_melt_value.toFixed(2);
-
-    final_face_value = document.getElementById('totalFaceValue');
-    final_face_value.innerHTML = "$" + all_coins_face_value.toFixed(2);
-
-    final_troy_oz = document.getElementById('totalTroyOz');
-    final_troy_oz.innerHTML = all_coins_troy_ounces.toFixed(3);
-  }
+            <div class="col-md-4 themed-grid-col" id="quarter" data-type="america">
 
 
-}
+                <div class="coin-container">
+                    <div class="coin-card">
+                        <div class="coin-face-front">
+                            <img src="images/quarter1965.jpg" class="coinPic" id="quarter1965" alt="1965 quarter">
+                        </div>
+                        <div class="coin-face-back">
+                            <img src="images/Washington_Reverse.png" class="coinPic" alt="American Silver Eagle Back">
+                        </div>
+                    </div>
+                </div>
 
 
-  //event listener in case spot price is changed after # of coins is already entered
-  document.getElementById('silverPrice').addEventListener('input', function() {
-    for (const coinName in coinTotals) {
-      if (coinTotals.hasOwnProperty(coinName)) {
-        const num = document.getElementById(`${coinName}Num`).value;
-  
-        //passing object containing number of coins and function that will return coinName
-        updateCoinValues({
-          value: num,
-          getAttribute: () => coinName,
-        });
-      }
-    }  
-  });
-  
+                <div class="coin-information">
+                    <div class="coin-name">
+                        <label>1932-1965 Washington Quarters (90%)</label>
+                        <input type="text" id="quarterNum" class="coin-amount" data-type="quarter" oninput="updateCoinValues(this)" placeholder="# of Quarters">
+                    </div>
+
+                    <div class="results">
+                        <p>Total Weight(grams) = <span id="quarterTotalWeight"></span></p>
+                        <p>Actual silver (grams) = <span id="quarterTotalSilver"></span></p>
+                        <p>Troy Ounces = <span id="quarterTroyOunces"></span></p>
+                        <p>Melt Value = $<span id="quarterMeltValue"></span></p>
+                        <p>Face Value = $<span id="quarterFaceValue"></span></p>
+                        
+                    </div>
+                </div>
+
+            </div>
 
 
-function resetInputs(){
-  
-  coinType.forEach((coinType) => {
-             
-    usrInput = document.getElementById(`${coinType}Num`)
-    usrValue = Number(usrInput.value)
-     if(usrValue > 0){
-       usrInput.value = 0
-     }else{
-      console.log("Something failed")
-     }
+            <div class="col-md-4 themed-grid-col" id="dime" data-type="america">
+                
+                <div class="coin-container">
+                    <div class="coin-card">
+                        <div class="coin-face-front">
+                            <img src="images/dimesMercury.jpg" class="coinPic" id="dimesMercury" alt="Mercury Dime Obverse">
+                        </div>
+                        <div class="coin-face-back">
+                            <img src="images/Mercury_reverse.png" class="coinPic" alt="Mercury Dime Reverse">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="coin-information">
 
-     calculateSilverWeight() 
-  });
+                    <div class="coin-name">
+                        <label>1916-1945 Mercury Dimes (90%)</label>
+                        <input type="text" id="dimeNum" class="coin-amount" data-type="dime" oninput="updateCoinValues(this)" placeholder="# of Mercury Dimes">
+                    </div>
+                    
+                    <div class="results">
+                        <p>Total Weight(grams) = <span id="dimeTotalWeight"></span></p>
+                        <p>Actual silver (grams) = <span id="dimeTotalSilver"></span></p>
+                        <p>Troy Ounces = <span id="dimeTroyOunces"></span></p>
+                        <p>Melt Value = $<span id="dimeMeltValue"></span></p>
+                        <p>Face Value = $<span id="dimeFaceValue"></span></p>
+    
+                    </div> 
+                </div>
+                 
+            </div>
 
-}
+            <div class="col-md-4 themed-grid-col" id="nickel" data-type="america">
+                    
+                <div class="coin-container">
+                    <div class="coin-card">
+                        <div class="coin-face-front">
+                    <img src="images/warNickel.jpg" class="coinPic" id="warNickel" alt="War Nickel Obverse">
+                        </div>
+                        <div class="coin-face-back">
+                            <img src="images/War-Nickel-Reverse.jpg" class="coinPic" alt="War Nickel Reverse">
+                        </div>
+                    </div>
+                </div>
+                    
+
+
+                <div class="coin-information">
+                    <div class="coin-name">
+                        <label>1942-1945 War Nickel (35%)</label>
+                        <input type="text" id="nickelNum" class="coin-amount" data-type="nickel" oninput="updateCoinValues(this)" placeholder="# of War Nickels">
+                    </div>
+    
+                    <div class="results">
+                        <p>Total Weight(grams) = <span id="nickelTotalWeight"></span></p>
+                        <p>Actual silver (grams) = <span id="nickelTotalSilver"></span></p>
+                        <p>Troy Ounces = <span id="nickelTroyOunces"></span></p>
+                        <p>Melt Value = $<span id="nickelMeltValue"></span></p>
+                        <p>Face Value = $<span id="nickelFaceValue"></span></p>
+    
+                    </div>
+                </div>
+            
+            </div>
+
+
+            <div class="col-md-4 themed-grid-col" id="franklin" data-type="america">
+
+
+                <div class="coin-container">
+                    <div class="coin-card">
+                        <div class="coin-face-front">
+                            <img src="images/franklin.jpg" class="coinPic" id="olympic" alt="Franklin Half Dollar Obverse">
+                        </div>
+                        <div class="coin-face-back">
+                            <img src="images/Franklin_Reverse.png" class="coinPic" alt="Frankline Half Dollar Reverse">
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="coin-information">
+                    <div class="coin-name">
+                        <label>1948-1963 Franklin Half Dollar (90%)</label>
+                        <input type="text" id="franklinNum" class="coin-amount" data-type="franklin" oninput="updateCoinValues(this)" placeholder="# of Franklin Half Dollars">
+                    </div>
+                    
+                    <div class="results">
+                        <p>Total Weight(grams) = <span id="franklinTotalWeight"></span></p>
+                        <p>Actual silver (grams) = <span id="franklinTotalSilver"></span></p>
+                        <p>Troy Ounces = <span id="franklinTroyOunces"></span></p>
+                        <p>Melt Value = $<span id="franklinMeltValue"></span></p>
+                        <p>Face Value = $<span id="franklinFaceValue"></span></p>
+    
+                    </div>
+                </div>
+              
+            </div>
+
+            <div class="col-md-4 themed-grid-col" id="kennedy40" data-type="america">
+
+
+
+                <div class="coin-container">
+                    <div class="coin-card">
+                        <div class="coin-face-front">
+                             <img src="images/kennedy40.jpg" class="coinPic" id="kennedy" alt="kennedy Half Dollar Obverse">
+                        </div>
+                        <div class="coin-face-back">
+                            <img src="images/Kennedy_reverse.png" class="coinPic" alt="Kennedy Half Dollar Reverse">
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="coin-information">
+                    <div class="coin-name">
+                        <label>1965-1970 Kennedy Half Dollar (40%)</label>
+                        <input type="text" id="kennedy40Num" class="coin-amount" data-type="kennedy40" oninput="updateCoinValues(this)" placeholder="# of Kennedy Half Dollars">
+                    </div>
+                    
+                    <div class="results">
+                        <p>Total Weight(grams) = <span id="kennedy40TotalWeight"></span></p>
+                        <p>Actual silver (grams) = <span id="kennedy40TotalSilver"></span></p>
+                        <p>Troy Ounces = <span id="kennedy40TroyOunces"></span></p>
+                        <p>Melt Value = $<span id="kennedy40MeltValue"></span></p>
+                        <p>Face Value = $<span id="kennedy40FaceValue"></span></p>
+    
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 themed-grid-col" id="eisenhower" data-type="america">
+
+
+
+                        <div class="coin-container">
+                            <div class="coin-card">
+                                <div class="coin-face-front">
+                                    <img src="images/eisenhower.jpg" class="coinPic" id="eisenhower40" alt="Eisenhower Half Dollar Obverse">
+                                </div>
+                                <div class="coin-face-back">
+                                    <img src="images/Eisenhower_Reverse.jpg" class="coinPic" alt="Eisenhower Half Dollar Reverse">
+                                </div>
+                            </div>
+                        </div>
+
+                <div class="coin-information">
+                    <div class="coin-name">
+                        <label>1971-1976 Eisenhower Half Dollar (40%)</label>
+                        <input type="text" id="eisenhowerNum" class="coin-amount" data-type="eisenhower"  oninput="updateCoinValues(this)" placeholder="# of Eisenhower Half Dollars">    
+                    </div>
+                    
+                    <div class="results">
+                        <p>Total Weight(grams) = <span id="eisenhowerTotalWeight"></span></p>
+                        <p>Actual silver (grams) = <span id="eisenhowerTotalSilver"></span></p>
+                        <p>Troy Ounces = <span id="eisenhowerTroyOunces"></span></p>
+                        <p>Melt Value = $<span id="eisenhowerMeltValue"></span></p>
+                        <p>Face Value = $<span id="eisenhowerFaceValue"></span></p>
+    
+                    </div>
+                </div>
+
+            </div>
+
+
+            
+            <div class="col-md-4 themed-grid-col" id="peace" data-type="america">
+                
+
+                <div class="coin-container">
+                    <div class="coin-card">
+                        <div class="coin-face-front">
+                            <img src="images/peaceDollar.jpg" class="coinPic" alt="Peace Dollar Obverse">
+
+                        </div>
+                        <div class="coin-face-back">
+                            <img src="images/peace_dollar_reverse.jpg" class="coinPic" alt="Peace Dollar Reverse">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="coin-information">
+                    <div class="coin-name">
+                        <label>1921-1928 Peace Dollar (90%)</label>
+                        <input type="text" id="peaceNum" class="coin-amount" data-type="peace" oninput="updateCoinValues(this)" placeholder="# of Peace Dollars">
+                    </div>
+    
+                    
+                    <div class="results">
+                        <p>Total Weight(grams) = <span id="peaceTotalWeight"></span></p>
+                        <p>Actual silver (grams) = <span id="peaceTotalSilver"></span></p>
+                        <p>Troy Ounces = <span id="peaceTroyOunces"></span></p>
+                        <p>Melt Value = $<span id="peaceMeltValue"></span></p>
+                        <p>Face Value = $<span id="peaceFaceValue"></span></p>
+    
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="col-md-4 themed-grid-col" id="morgan" data-type="america">
+                
+
+
+                <div class="coin-container">
+                    <div class="coin-card">
+                        <div class="coin-face-front">
+                            <img src="images/morgan.png" class="coinPic" alt="Morgan Dollar Obverse">
+                
+                        </div>
+                        <div class="coin-face-back">
+                            <img src="images/Morgan_reverse.png" class="coinPic" alt="Morgan Dollar Reverse">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="coin-information">
+                    <div class="coin-name">
+                        <label>1878-1904 Morgan Dollar (90%)</label>
+                        <input type="text" id="morganNum" class="coin-amount" data-type="morgan" oninput="updateCoinValues(this)" placeholder="# of Morgan Dollars">
+                    </div>
+    
+                    
+                    <div class="results">
+                        <p>Total Weight(grams) = <span id="morganTotalWeight"></span></p>
+                        <p>Actual silver (grams) = <span id="morganTotalSilver"></span></p>
+                        <p>Troy Ounces = <span id="morganTroyOunces"></span></p>
+                        <p>Melt Value = $<span id="morganMeltValue"></span></p>
+                        <p>Face Value = $<span id="morganFaceValue"></span></p>
+    
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-4 themed-grid-col" id="ase" data-type="america">
+               
+
+
+                    <div class="coin-container">
+                        <div class="coin-card">
+                            <div class="coin-face-front">
+                                <img src="images/ase.png" class="coinPic" alt="American Silver Eagle Obverse">
+
+                            </div>
+                            <div class="coin-face-back">
+                                <img src="images/ase_reverse.png" class="coinPic" alt="American Silver Eagle Reverse">
+                            </div>
+                        </div>
+                    </div>
+                
+
+
+
+                <div class="coin-information">
+                    <div class="coin-name">
+                        <label>1986-Present American Silver Eagle (99.9%)</label>
+                        <input type="text" id="aseNum" class="coin-amount" data-type="ase" oninput="updateCoinValues(this)" placeholder="# of Silver Eagles">
+                    </div>
+    
+                    
+                    <div class="results">
+                        <p>Total Weight(grams) = <span id="aseTotalWeight"></span></p>
+                        <p>Actual silver (grams) = <span id="aseTotalSilver"></span></p>
+                        <p>Troy Ounces = <span id="aseTroyOunces"></span></p>
+                        <p>Melt Value = $<span id="aseMeltValue"></span></p>
+                        <p>Face Value = $<span id="aseFaceValue"></span></p>
+    
+                    </div>
+                </div>
+            
+            </div>
+            
+        </div>
+        
+        <div class="total-values-container">
+            <div class="totalValues">
+                <p>Total Melt Value: <span id="totalMeltValue"></span></p>
+                <p>Total Face Value: <span id="totalFaceValue"></span></p>
+                <p>Total Troy Ounces: <span id="totalTroyOz"></span></p>
+            </div>
+        
+            <div class="buttons">
+                <button onclick="resetInputs()" class="resetButton">Reset</button>
+            </div>
+        </div>
+      
+
+
+</body>
+
+    <script src="app.js"></script>
+</html>
